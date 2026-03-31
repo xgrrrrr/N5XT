@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>N5XT Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="adminC.css"/>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="scanline"></div>
+
+<!-- ═══ Login Screen ═══ -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">N5XT</div>
+    <div class="login-sub">ADMIN PANEL</div>
+    <label>PASSWORD</label>
+    <input type="password" id="adminPass" placeholder="Enter admin password"/>
+    <p class="login-err" id="loginErr"></p>
+    <button class="login-btn" id="loginBtn" onclick="doLogin()">ENTER</button>
+  </div>
+</div>
+
+<!-- ═══ Main Screen ═══ -->
+<div id="mainScreen">
+
+  <div class="topbar">
+    <span class="topbar-logo">
+      N5XT &nbsp;<span style="opacity:.5;font-weight:400">/</span>&nbsp;
+      <span style="opacity:.6;font-size:.9rem">ADMIN</span>
+    </span>
+    <div class="topbar-r">
+      <span class="server-time" id="serverTime"></span>
+      <button class="logout-btn" onclick="doLogout()">LOGOUT</button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('dashboard', this)">DASHBOARD</div>
+    <div class="tab" onclick="switchTab('activity', this)">OTP ACTIVITY</div>
+    <div class="tab" onclick="switchTab('users', this)">USERS</div>
+    <div class="tab" onclick="switchTab('scores', this)">🎮 GAME SCORES</div>
+  </div>
+
+  <div class="content">
+
+    <!-- ── Dashboard Tab ── -->
+    <div id="tab-dashboard">
+      <div class="stats">
+        <div class="stat cy">
+          <div class="stat-num" id="s-users">—</div>
+          <div class="stat-lbl">Registered Users</div>
+        </div>
+        <div class="stat pk">
+          <div class="stat-num" id="s-logins">—</div>
+          <div class="stat-lbl">Successful Logins</div>
+        </div>
+        <div class="stat yw">
+          <div class="stat-num" id="s-otps">—</div>
+          <div class="stat-lbl">OTPs Issued Today</div>
+        </div>
+        <div class="stat gn">
+          <div class="stat-num" id="s-games">—</div>
+          <div class="stat-lbl">Total Matches Played</div>
+        </div>
+        <div class="stat pu">
+          <div class="stat-num" id="s-games-today">—</div>
+          <div class="stat-lbl">Matches Today</div>
+        </div>
+        <div class="stat cy">
+          <div class="stat-num" id="s-ttt-games">—</div>
+          <div class="stat-lbl">Tic-Tac-Toe Matches</div>
+        </div>
+        <div class="stat pk">
+          <div class="stat-num" id="s-duel-games">—</div>
+          <div class="stat-lbl">Stickman Duel Matches</div>
+        </div>
+        <div class="stat yw">
+          <div class="stat-num" id="s-horse-games">—</div>
+          <div class="stat-lbl">Horse Racing Races</div>
+        </div>
+      </div>
+      <p class="sec-title">RECENT ACTIVITY</p>
+      <div id="dash-activity"></div>
+      <p class="sec-title" style="margin-top:1.8rem">RECENT MATCHES</p>
+      <div id="dash-scores"></div>
+    </div>
+
+    <!-- ── Activity Tab ── -->
+    <div id="tab-activity" style="display:none">
+      <p class="sec-title">OTP ACTIVITY LOG</p>
+      <div class="search-row">
+        <input type="text" id="searchInput" placeholder="Search by username or email..."
+               onkeydown="if(event.key==='Enter') doSearch()"/>
+        <button onclick="doSearch()">SEARCH</button>
+        <button class="btn-clear" onclick="clearSearch()">CLEAR</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th><th>Username</th><th>Email</th>
+              <th>Type</th><th>Status</th><th>Requested At</th><th>Expires At</th>
+            </tr>
+          </thead>
+          <tbody id="activityBody"></tbody>
+        </table>
+      </div>
+      <div class="pag" id="pagDiv"></div>
+    </div>
+
+    <!-- ── Users Tab ── -->
+    <div id="tab-users" style="display:none">
+      <p class="sec-title" id="usersTitle">REGISTERED USERS</p>
+      <div class="users-grid" id="usersGrid"></div>
+    </div>
+
+    <!-- ── Game Scores Tab ── -->
+    <div id="tab-scores" style="display:none">
+      <div class="scores-header">
+        <p class="sec-title" id="scoresTitle" style="margin:0">ALL GAMES — MATCH HISTORY</p>
+        <div style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap">
+          <!-- Game filter buttons -->
+          <div style="display:flex;gap:.4rem;align-items:center">
+            <button class="game-filter-btn active" data-game=""
+                    onclick="setGameFilter('')">ALL</button>
+            <button class="game-filter-btn" data-game="TicTacToe"
+                    onclick="setGameFilter('TicTacToe')">🎮 TIC-TAC-TOE</button>
+            <button class="game-filter-btn" data-game="StickmanDuel"
+                    onclick="setGameFilter('StickmanDuel')">⚔ STICKMAN DUEL</button>
+            <button class="game-filter-btn" data-game="HorseRacing"
+                    onclick="setGameFilter('HorseRacing')">🏇 HORSE RACING</button>
+          </div>
+          <div class="search-row" style="margin:0">
+            <input type="text" id="scoresSearch" placeholder="Search player, mode, winner..."
+                   onkeydown="if(event.key==='Enter') doScoresSearch()" style="width:220px"/>
+            <button onclick="doScoresSearch()">SEARCH</button>
+            <button class="btn-clear" onclick="clearScoresSearch()">CLEAR</button>
+          </div>
+          <button class="btn-danger" id="clearScoresBtn" onclick="confirmClearScores()">🗑 CLEAR ALL</button>
+        </div>
+      </div>
+      <div class="score-summary" id="scoreSummary"></div>
+      <div class="table-wrap" style="margin-top:1rem">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th><th>Player 1</th><th>Player 2</th><th>Game</th><th>Mode</th>
+              <th>Difficulty</th><th>Winner</th><th>Score</th><th>Played At</th><th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="scoresBody"></tbody>
+        </table>
+      </div>
+      <div class="pag" id="scoresPagDiv"></div>
+    </div>
+
+  </div><!-- /.content -->
+</div><!-- /#mainScreen -->
+
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
+
+<script src="adminJ.js"></script>
+</body>
+</html>

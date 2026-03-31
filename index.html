@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>N5XT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="loginC.css"/>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="scanline"></div>
+
+<div class="auth-wrap">
+
+  <div class="logo-block">
+    <div class="logo-hex">
+      <svg viewBox="0 0 60 60" fill="none">
+        <polygon points="30,4 56,18 56,42 30,56 4,42 4,18" stroke="#00f5d4" stroke-width="2" fill="none"/>
+        <polygon points="30,14 46,23 46,37 30,46 14,37 14,23" stroke="#ff006e" stroke-width="1.5" fill="rgba(0,245,212,0.06)"/>
+        <circle cx="30" cy="30" r="6" fill="#00f5d4"/>
+      </svg>
+    </div>
+    <h1 class="logo-name">N5XT</h1>
+    <p class="logo-tag">SIGN IN TO CONTINUE</p>
+  </div>
+
+  <div class="card" id="loginCard">
+    <div class="card-glow"></div>
+
+    <!-- ═══ Credentials ═══ -->
+    <div id="loginFields">
+      <div class="field">
+        <label>USERNAME</label>
+        <div class="frow">
+          <span class="fico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+          <input type="text" id="lUser" placeholder="Enter your username" autocomplete="off"/>
+          <span class="ubar"></span>
+        </div>
+      </div>
+      <div class="field">
+        <label>PASSWORD</label>
+        <div class="frow">
+          <span class="fico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+          <input type="password" id="lPass" placeholder="Enter your password"/>
+          <button class="eye" id="lEye" type="button">
+            <svg class="eo" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="ec" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </button>
+          <span class="ubar"></span>
+        </div>
+      </div>
+      <div class="opt-row">
+        <label class="cb"><input type="checkbox" id="lRem"/><span class="cb-box"></span><span>Remember me</span></label>
+        <a href="forgotH.html" class="lnk">Forgot password?</a>
+      </div>
+      <p class="msg" id="lErr"></p>
+    </div>
+
+    <button class="btn" id="lBtn" type="button">
+      <span class="btn-lbl">LAUNCH</span>
+      <span class="btn-spin"></span>
+      <span class="btn-shine"></span>
+    </button>
+
+    <!-- ═══ OTP Panel ═══ -->
+    <div id="otpPanel" class="hide" style="margin-top:.4rem">
+      <p class="otp-label">VERIFICATION CODE</p>
+      <p class="otp-hint" id="otpHint">A 6-digit code has been sent to your email.</p>
+      <div class="otp-boxes">
+        <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" autocomplete="off"/>
+        <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" autocomplete="off"/>
+        <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" autocomplete="off"/>
+        <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" autocomplete="off"/>
+        <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" autocomplete="off"/>
+        <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" autocomplete="off"/>
+      </div>
+      <p class="msg" id="otpErr"></p>
+      <button class="btn" id="otpVerifyBtn" type="button">
+        <span class="btn-lbl">VERIFY &amp; LAUNCH</span>
+        <span class="btn-spin"></span>
+        <span class="btn-shine"></span>
+      </button>
+      <div class="otp-footer">
+        <button id="otpResend" type="button" class="link-btn">Resend code</button>
+        <span id="otpTimer" class="timer-txt"></span>
+      </div>
+      <button id="otpBack" type="button" class="back-link">&#8249; Back to login</button>
+    </div>
+
+    <div id="loginFooter">
+      <div class="divider">OR</div>
+      <div class="lrow">New here? <a href="registerH.html" class="lnk">Create an account</a></div>
+    </div>
+  </div>
+
+  <p class="demo-hint">DEMO &nbsp;▸&nbsp; player1 / pass123 &nbsp;|&nbsp; admin / admin &nbsp;|&nbsp; demo / demo</p>
+</div>
+
+<script src="sharedJ.js"></script>
+<script src="api.js"></script>
+<script src="loginJ.js"></script>
+</body>
+</html>

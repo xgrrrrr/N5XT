@@ -1,0 +1,128 @@
+/* ================================================
+   REGISTER.CSS
+   ================================================ */
+
+.page-wrap {
+  position: relative; z-index: 2;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 2rem; gap: 1.8rem;
+  overflow-y: auto;
+}
+
+.auth-card { max-width: 460px; }
+
+/* ---- Step Indicator ---- */
+.steps {
+  display: flex; align-items: center;
+  margin-bottom: 2rem;
+}
+.step {
+  display: flex; flex-direction: column;
+  align-items: center; gap: .3rem;
+  flex-shrink: 0;
+}
+.step span {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--dim);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: .7rem; font-weight: 700;
+  color: var(--dim);
+  transition: all .4s;
+}
+.step small {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .48rem; letter-spacing: .15em;
+  color: var(--dim); transition: color .4s;
+}
+.step.active span {
+  border-color: var(--cyan); color: var(--cyan);
+  box-shadow: var(--gc);
+}
+.step.active small { color: var(--cyan); }
+.step.done span {
+  background: var(--cyan); border-color: var(--cyan);
+  color: var(--dark);
+}
+.step.done small { color: var(--cyan); }
+.step-line {
+  flex: 1; height: 1px;
+  background: var(--dim);
+  margin: 0 .5rem;
+  margin-bottom: 1.1rem;
+  transition: background .4s;
+}
+.step-line.done { background: var(--cyan); box-shadow: var(--gc); }
+
+/* ---- Panels ---- */
+.step-panel { animation: fadeUp .4s ease both; }
+.step-panel.hidden { display: none; }
+
+/* ---- Field hints ---- */
+.field-hint {
+  font-size: .72rem; letter-spacing: .06em;
+  margin-top: .35rem; min-height: 1rem;
+  transition: color .3s;
+}
+.field-hint.ok  { color: var(--cyan); }
+.field-hint.err { color: var(--pink); }
+
+/* ---- Strength bar colors ---- */
+.str-1 span:nth-child(1)                   { background: var(--pink)!important; }
+.str-2 span:nth-child(-n+2)                { background: var(--yellow)!important; }
+.str-3 span:nth-child(-n+3)                { background: var(--cyan)!important; }
+.str-4 span                                { background: var(--green)!important; }
+
+/* ---- Button row ---- */
+.btn-row {
+  display: flex; gap: .8rem; align-items: stretch;
+}
+.btn-back {
+  padding: .9rem 1.1rem;
+  background: transparent;
+  border: 1px solid var(--dim);
+  color: var(--dim);
+  font-family: 'Orbitron', sans-serif;
+  font-size: .72rem; letter-spacing: .15em;
+  cursor: pointer; white-space: nowrap;
+  transition: border-color .3s, color .3s;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+.btn-back:hover { border-color: var(--cyan); color: var(--cyan); }
+.flex1 { flex: 1; }
+
+/* ---- Success panel ---- */
+.success-wrap {
+  text-align: center; padding: 1rem 0 .5rem;
+}
+.success-icon {
+  width: 80px; height: 80px;
+  margin: 0 auto 1.5rem;
+  animation: popIn .6s cubic-bezier(.175,.885,.32,1.275) both;
+}
+.success-icon svg { width: 100%; height: 100%; }
+@keyframes popIn {
+  from { transform: scale(0) rotate(-20deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0);      opacity: 1; }
+}
+.success-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4rem; font-weight: 900;
+  letter-spacing: .12em; color: var(--cyan);
+  text-shadow: var(--gc); margin-bottom: .6rem;
+}
+.success-sub { color: var(--dim); font-size: .92rem; line-height: 1.6; }
+.success-sub strong { color: var(--text); }
+
+.redirect-bar {
+  margin-top: 1.2rem; height: 3px;
+  background: var(--d3); border-radius: 2px; overflow: hidden;
+}
+.redirect-fill {
+  height: 100%; width: 0;
+  background: var(--cyan); box-shadow: var(--gc);
+  transition: width 3s linear;
+}

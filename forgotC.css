@@ -1,0 +1,103 @@
+/* ================================================
+   FORGOT.CSS
+   ================================================ */
+
+.page-wrap {
+  position: relative; z-index: 2;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 2rem; gap: 1.8rem;
+  overflow-y: auto;
+}
+
+.auth-card { max-width: 430px; }
+
+.hidden { display: none; }
+
+/* ---- Reset icon ---- */
+.reset-icon {
+  width: 68px; height: 68px;
+  margin: 0 auto 1.2rem;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+.reset-icon svg { width: 100%; height: 100%; }
+@keyframes pulse {
+  0%,100% { filter: drop-shadow(0 0 4px rgba(255,0,110,0.3)); }
+  50%      { filter: drop-shadow(0 0 14px rgba(255,0,110,0.8)); }
+}
+
+.reset-desc {
+  font-size: .9rem; color: var(--dim);
+  line-height: 1.7; text-align: center;
+  margin-bottom: 1.6rem; letter-spacing: .02em;
+}
+
+/* ---- Found badge ---- */
+.found-badge {
+  display: flex; align-items: center;
+  gap: .6rem; margin-bottom: 1.6rem;
+  padding: .7rem 1rem;
+  background: rgba(0,245,212,.06);
+  border: 1px solid rgba(0,245,212,.2);
+  color: var(--cyan);
+  font-family: 'Orbitron', sans-serif;
+  font-size: .75rem; letter-spacing: .12em;
+  animation: fadeUp .4s ease;
+}
+
+/* ---- Button row ---- */
+.btn-row2 {
+  display: flex; gap: .8rem;
+}
+.btn-back-sm {
+  padding: .9rem 1rem;
+  background: transparent;
+  border: 1px solid var(--dim);
+  color: var(--dim);
+  font-family: 'Orbitron', sans-serif;
+  font-size: .72rem; letter-spacing: .12em;
+  cursor: pointer; white-space: nowrap;
+  transition: border-color .3s, color .3s;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+.btn-back-sm:hover { border-color: var(--cyan); color: var(--cyan); }
+.flex1 { flex: 1; }
+
+/* ---- Strength bar colors ---- */
+#fsb1, #fsb2, #fsb3, #fsb4 { background: var(--d3); }
+
+/* ---- Success ---- */
+.success-wrap {
+  text-align: center; padding: .5rem 0;
+}
+.success-icon {
+  width: 80px; height: 80px;
+  margin: 0 auto 1.5rem;
+  animation: popIn .6s cubic-bezier(.175,.885,.32,1.275) both;
+}
+.success-icon svg { width: 100%; height: 100%; }
+@keyframes popIn {
+  from { transform: scale(0) rotate(-20deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0);      opacity: 1; }
+}
+.success-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.35rem; font-weight: 900;
+  letter-spacing: .12em; color: var(--cyan);
+  text-shadow: var(--gc); margin-bottom: .6rem;
+}
+.success-sub { color: var(--dim); font-size: .92rem; line-height: 1.6; }
+
+.redirect-bar {
+  margin-top: 1.2rem; height: 3px;
+  background: var(--d3); border-radius: 2px; overflow: hidden;
+}
+.redirect-fill {
+  height: 100%; width: 0;
+  background: var(--cyan); box-shadow: var(--gc);
+  transition: width 3s linear;
+}
+
+/* ---- Strength label ---- */
+.strength-bar span { background: var(--d3); }

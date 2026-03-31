@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>N5XT — Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="scanline"></div>
+<div class="auth-wrap">
+  <div class="logo-block">
+    <div class="logo-hex"><svg viewBox="0 0 60 60" fill="none"><polygon points="30,4 56,18 56,42 30,56 4,42 4,18" stroke="#00f5d4" stroke-width="2" fill="none"/><polygon points="30,14 46,23 46,37 30,46 14,37 14,23" stroke="#ff006e" stroke-width="1.5" fill="rgba(0,245,212,0.06)"/><circle cx="30" cy="30" r="6" fill="#00f5d4"/></svg></div>
+    <h1 class="logo-name">N5XT</h1>
+    <p class="logo-tag">CREATE YOUR ACCOUNT</p>
+  </div>
+  <div class="card" id="regCard">
+    <div class="card-glow"></div>
+    <div class="steps">
+      <div class="step active" id="rs1"><span>1</span><small>ACCOUNT</small></div>
+      <div class="step-ln" id="rln1"></div>
+      <div class="step" id="rs2"><span>2</span><small>SECURITY</small></div>
+      <div class="step-ln" id="rln2"></div>
+      <div class="step" id="rs3"><span>3</span><small>DONE</small></div>
+    </div>
+    <!-- Step 1 -->
+    <div class="panel" id="rp1">
+      <div class="field">
+        <label>USERNAME</label>
+        <div class="frow">
+          <span class="fico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+          <input type="text" id="rUser" placeholder="Choose a username" autocomplete="off"/>
+          <span class="ubar"></span>
+        </div>
+        <p class="fhint" id="rUserHint"></p>
+      </div>
+      <div class="field">
+        <label>EMAIL ADDRESS</label>
+        <div class="frow">
+          <span class="fico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+          <input type="email" id="rEmail" placeholder="your@email.com" autocomplete="off"/>
+          <span class="ubar"></span>
+        </div>
+        <p class="fhint" id="rEmailHint"></p>
+      </div>
+      <p class="msg" id="rErr1"></p>
+      <button class="btn" id="rNext" type="button"><span class="btn-lbl">NEXT &nbsp;›</span><span class="btn-shine"></span></button>
+    </div>
+    <!-- Step 2 -->
+    <div class="panel hide" id="rp2">
+      <div class="field">
+        <label>PASSWORD</label>
+        <div class="frow">
+          <span class="fico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+          <input type="password" id="rPass" placeholder="Create a strong password"/>
+          <button class="eye" type="button" id="rEye1">
+            <svg class="eo" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="ec" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </button>
+          <span class="ubar"></span>
+        </div>
+        <div class="str-wrap"><div class="str-bar"><span id="sb1"></span><span id="sb2"></span><span id="sb3"></span><span id="sb4"></span></div><span class="str-lbl" id="strLbl">Enter a password</span></div>
+      </div>
+      <div class="field">
+        <label>CONFIRM PASSWORD</label>
+        <div class="frow">
+          <span class="fico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+          <input type="password" id="rConf" placeholder="Repeat your password"/>
+          <button class="eye" type="button" id="rEye2">
+            <svg class="eo" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="ec" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </button>
+          <span class="ubar"></span>
+        </div>
+      </div>
+      <label class="cb" style="margin-bottom:1rem"><input type="checkbox" id="rTerms"/><span class="cb-box"></span><span>I agree to the Terms &amp; Conditions</span></label>
+      <p class="msg" id="rErr2"></p>
+      <div class="btn-row">
+        <button class="btn-sec" type="button" id="rBack">&#8249; BACK</button>
+        <button class="btn flex1" type="button" id="rCreateBtn"><span class="btn-lbl">CREATE ACCOUNT</span><span class="btn-spin"></span><span class="btn-shine"></span></button>
+      </div>
+    </div>
+    <!-- Step 3: Success -->
+    <div class="panel hide" id="rp3">
+      <div class="suc-wrap">
+        <div class="suc-ico"><svg viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" stroke="#00f5d4" stroke-width="2"/><polyline points="18,30 26,38 42,22" stroke="#00f5d4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h2 class="suc-title">ACCOUNT CREATED!</h2>
+        <p class="suc-sub">Welcome, <strong id="rNewName"></strong>!</p>
+        <p class="suc-sub" style="margin-top:.4rem">Taking you to login...</p>
+        <div class="rbar"><div class="rfill" id="rFill"></div></div>
+      </div>
+    </div>
+    <div class="lrow" id="rLoginRow">Already have an account? <a href="index.html" class="lnk">Sign in</a></div>
+  </div>
+</div>
+<script src="sharedJ.js"></script>
+<script src="api.js"></script>
+<script src="registerJ.js"></script>
+</body>
+</html>

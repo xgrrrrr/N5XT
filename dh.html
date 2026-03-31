@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>STICKMAN DUEL</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="dc.css"/>
+</head>
+<body>
+
+<div id="topbar">
+  <div class="tb-left">
+    <span style="font-size:1.5rem">🥷</span>
+    <span class="tb-title">STICKMAN DUEL</span>
+  </div>
+  <div class="tb-right">
+    <span class="tb-badge" id="serverBadge">● CONNECTING...</span>
+    <button id="menuTopBtn">&#8592; N5XT</button>
+  </div>
+</div>
+
+<!-- ══ MAIN MENU ══ -->
+<div class="screen" id="screenMenu">
+  <div class="menu-hero">
+    <div class="menu-fighters">
+      <span class="menu-fig">🥷</span>
+      <span class="menu-vs">VS</span>
+      <span class="menu-fig right">🥷</span>
+    </div>
+    <div class="menu-title">STICKMAN DUEL</div>
+    <div class="menu-tag">JAVA BACKEND · HTML/CSS/JS FRONTEND</div>
+  </div>
+  <div class="menu-btns">
+    <button class="mbtn cyan" id="btnAI">
+      <span class="mbtn-sweep"></span>
+      <span class="mbtn-icon">🤖</span>
+      <div class="mbtn-body">
+        <span class="mbtn-label">PLAYER VS AI</span>
+        <span class="mbtn-hint">Battle the Java-powered CPU</span>
+      </div>
+      <span class="mbtn-arr">›</span>
+    </button>
+    <button class="mbtn red" id="btnPVP">
+      <span class="mbtn-sweep"></span>
+      <span class="mbtn-icon">👥</span>
+      <div class="mbtn-body">
+        <span class="mbtn-label">1v1 LOCAL</span>
+        <span class="mbtn-hint">Both players · same keyboard</span>
+      </div>
+      <span class="mbtn-arr">›</span>
+    </button>
+    <button class="mbtn gold" id="btnHowTo">
+      <span class="mbtn-sweep"></span>
+      <span class="mbtn-icon">📖</span>
+      <div class="mbtn-body">
+        <span class="mbtn-label">HOW TO PLAY</span>
+        <span class="mbtn-hint">Controls &amp; weapon guide</span>
+      </div>
+      <span class="mbtn-arr">›</span>
+    </button>
+  </div>
+  <div class="menu-stats">
+    <div class="mstat"><div class="mstat-val" id="msW">0</div><div class="mstat-lbl">WINS</div></div>
+    <div class="mstat"><div class="mstat-val red" id="msL">0</div><div class="mstat-lbl">LOSSES</div></div>
+    <div class="mstat"><div class="mstat-val gold" id="msD">0</div><div class="mstat-lbl">DRAWS</div></div>
+  </div>
+  <button class="vault-back-btn" onclick="window.location.href='GSH.html'">&#8592; BACK TO N5XT</button>
+  <div class="java-badge">⚙️ Game Logic: Java (port 9090) · Rendering: Canvas JS (Apache port 80)</div>
+</div>
+
+
+<!-- ══ DIFFICULTY SELECT ══ -->
+<div class="screen hidden" id="screenDiff">
+  <div class="ws-hdr">
+    <div class="ws-phase" style="color:#ff006e">PLAYER VS AI — SELECT DIFFICULTY</div>
+    <div class="ws-sub">Choose how tough the CPU fights</div>
+  </div>
+  <div class="diff-grid">
+    <button class="diff-btn easy"    data-diff="easy">
+      <span class="diff-icon">😊</span>
+      <span class="diff-name">EASY</span>
+      <span class="diff-desc">Slow, misses often, rarely blocks</span>
+    </button>
+    <button class="diff-btn medium"  data-diff="medium">
+      <span class="diff-icon">😐</span>
+      <span class="diff-name">MEDIUM</span>
+      <span class="diff-desc">Balanced — good for beginners</span>
+    </button>
+    <button class="diff-btn hard"    data-diff="hard">
+      <span class="diff-icon">😤</span>
+      <span class="diff-name">HARD</span>
+      <span class="diff-desc">Fast reactions, punishes mistakes</span>
+    </button>
+    <button class="diff-btn extreme" data-diff="extreme">
+      <span class="diff-icon">💀</span>
+      <span class="diff-name">EXTREME</span>
+      <span class="diff-desc">Relentless. No mercy. Good luck.</span>
+    </button>
+  </div>
+  <button class="ws-bk" id="diffBack">&#8592; BACK</button>
+</div>
+
+<!-- ══ WEAPON SELECT ══ -->
+<div class="screen hidden" id="screenWeapon">
+  <div class="ws-hdr">
+    <div class="ws-phase" id="wsLabel">PLAYER 1 — CHOOSE YOUR WEAPON</div>
+    <div class="ws-sub">Combat calculations run on the Java server at port 9090</div>
+  </div>
+  <div class="wgrid" id="wgrid"></div>
+  <div class="wprev">
+    <div class="wprev-icon" id="wpIcon">⚔️</div>
+    <div class="wprev-info">
+      <div class="wprev-name" id="wpName">SELECT A WEAPON</div>
+      <div class="wprev-desc" id="wpDesc">Hover a weapon to preview</div>
+      <div class="wprev-bars" id="wpBars"></div>
+    </div>
+  </div>
+  <div class="ws-actions">
+    <button class="ws-confirm" id="wsOK" disabled>CONFIRM ›</button>
+    <button class="ws-bk" id="wsBk">&#8592; BACK</button>
+  </div>
+</div>
+
+<!-- ══ HOW TO PLAY ══ -->
+<div class="screen hidden" id="screenHowTo">
+  <div class="howto-inner">
+    <div class="howto-title">HOW TO PLAY</div>
+    <div class="howto-grid">
+      <div class="hcard">
+        <div class="hcard-title">🎮 CONTROLS</div>
+        <div class="ctrl-tbl" id="ctrlTbl"></div>
+      </div>
+      <div class="hcard">
+        <div class="hcard-title">⚙️ HOW IT WORKS</div>
+        <div style="font-size:.78rem;color:rgba(255,255,255,.65);line-height:1.75">
+          <strong style="color:#00f5d4">Apache (XAMPP)</strong> serves HTML/CSS/JS<br/>
+          on <strong style="color:#ffd60a">localhost:80</strong><br/><br/>
+          <strong style="color:#ff006e">Java Server</strong> runs the game logic<br/>
+          on <strong style="color:#ffd60a">localhost:9090</strong><br/><br/>
+          JS talks to Java via REST API.<br/>
+          <strong style="color:#ff006e">Best of 3 rounds · 60s per round</strong>
+        </div>
+      </div>
+    </div>
+    <div class="hcard" style="max-width:640px;width:100%">
+      <div class="hcard-title">⚔️ ALL WEAPONS</div>
+      <div class="wmini-list" id="wMiniList"></div>
+    </div>
+    <button class="ws-bk" id="howToBack">&#8592; BACK TO MENU</button>
+  </div>
+</div>
+
+<!-- ══ FIGHT ══ -->
+<div class="screen hidden" id="screenFight" style="padding:0;gap:0;justify-content:flex-start">
+  <div id="fightHUD">
+    <div class="fhud-side">
+      <div class="fhud-pname" id="hudNameA">PLAYER 1</div>
+      <div class="fhud-weapon" id="hudWepA">⚔️ SWORD</div>
+      <div class="hp-track"><div class="hp-bar a" id="hpBarA"></div></div>
+      <div class="hp-txt" id="hpTxtA">100 HP</div>
+    </div>
+    <div class="fhud-mid">
+      <div class="round-tag" id="roundTag">ROUND 1</div>
+      <div id="fTimer">60</div>
+      <div class="score-tag" id="scoreTag">0 — 0</div>
+    </div>
+    <div class="fhud-side right">
+      <div class="fhud-pname" id="hudNameB">CPU</div>
+      <div class="fhud-weapon" id="hudWepB">🔨 HAMMER</div>
+      <div class="hp-track"><div class="hp-bar b" id="hpBarB"></div></div>
+      <div class="hp-txt" id="hpTxtB">100 HP</div>
+    </div>
+  </div>
+  <canvas id="fightCanvas"></canvas>
+  <div id="ctrlBar">
+    <span>P1: A/D move · W jump · F attack · G block</span>
+    <span id="ctrlR">CPU controlled</span>
+  </div>
+</div>
+
+<!-- ══ SERVER OFFLINE NOTICE ══ -->
+<div class="server-offline hidden" id="serverOffline">
+  <div class="offline-card">
+    <div style="font-size:2.5rem">⚙️</div>
+    <div class="offline-title">JAVA SERVER NOT RUNNING</div>
+    <div class="offline-sub">The game logic server needs to be running.</div>
+    <div class="offline-code">1. Open a terminal / command prompt
+2. Go to the folder with StickmanServer.java
+3. Run these commands:
+
+   javac StickmanServer.java
+   java dual.StickmanServer
+
+4. Keep that window open, then refresh this page.</div>
+    <div class="offline-sub" style="margin-top:8px">
+      Java server runs on port <strong style="color:#ffd60a">9090</strong><br/>
+      This page is served by Apache on port <strong style="color:#ffd60a">80</strong>
+    </div>
+    <button class="ws-confirm" id="retryBtn" style="margin-top:14px;cursor:pointer">↺ RETRY CONNECTION</button>
+  </div>
+</div>
+
+<script src="dj.js"></script>
+</body>
+</html>
